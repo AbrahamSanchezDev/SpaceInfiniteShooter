@@ -1,23 +1,49 @@
 using UnityEngine;
 
 public class SmoothCameraFollow : MonoBehaviour {
-    public float smoothSpeed = 0.125f;
-    public float leadFactor = 0.5f;
+    [Header("Follow Settings")]
+    [SerializeField] private float smoothSpeed = 0.125f;
+    [SerializeField] private float leadFactor = 0.5f;
+    [SerializeField] private Vector3 offset = new Vector3(0, 0, -10);
 
     private Transform myTransform;
+    private Vector3 targetPosition;
 
     private void Awake() {
         myTransform = transform;
     }
 
+    private void OnEnable() {
+        // Subscribe to movement and origin reset events
+        EventHub.ShipMoved.AddListener(OnPlayerMoved);
+        EventHub.OriginResetRequested.AddListener(OnOriginReset);
+    }
 
-    private void OnEnable() => EventHub.ShipMoved.AddListener(UpdateCamera);
-    private void OnDisable() => EventHub.ShipMoved.RemoveListener(UpdateCamera);
+    private void OnDisable() {
+        // Unsubscribe to prevent memory leaks
+        EventHub.ShipMoved.RemoveListener(OnPlayerMoved);
+        EventHub.OriginResetRequested.RemoveListener(OnOriginReset);
+    }
 
-    // Linked via UnityEvent in Inspector
-    public void UpdateCamera(MovementData data) {
-        Vector3 target = data.Position + ((Vector3)data.Velocity * leadFactor);
-        target.z = -10;
-        myTransform.position = Vector3.Lerp(myTransform.position, target, smoothSpeed);
+    private void OnPlayerMoved(MovementData data) {
+        // Calculate the look-ahead (lead) based on ship velocity
+        Vector3 lead = (Vector3)data.Velocity * leadFactor;
+
+        // Update the target we want to reach
+        targetPosition = data.Position + lead + offset;
+    }
+
+    private void OnOriginReset(Vector3 offsetShift) {
+        // Instantly teleport the camera and the target position 
+        // to maintain frame-perfect synchronization
+        myTransform.position -= offsetShift;
+        targetPosition -= offsetShift;
+    }
+
+    private void LateUpdate() {
+        // Smoothly move the camera toward the targetPosition
+        // We use LateUpdate to ensure the ship has finished moving for the frame
+        Vector3 smoothedPosition = Vector3.Lerp(myTransform.position, targetPosition, smoothSpeed);
+        myTransform.position = smoothedPosition;
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1928604588901918026}
   - component: {fileID: 3157433485711435294}
   - component: {fileID: 8248232242528580092}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Asteroid_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1078389049224223843}
   - component: {fileID: 4947333346917508096}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 4313464209573650731}
   - component: {fileID: 1998335983849299210}
   - component: {fileID: 302388736706171808}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

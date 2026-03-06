@@ -13,12 +13,23 @@ public class ShipController : MonoBehaviour {
     private MovementData movementData = new MovementData();
     private Transform myTransform;
 
+    [SerializeField] private float threshold = 1000f;
+
     private void Awake() {
         myTransform = transform;
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0f;
     }
+    private void OnEnable() => EventHub.OriginResetRequested.AddListener(ResetPosition);
+    private void OnDisable() => EventHub.OriginResetRequested.RemoveListener(ResetPosition);
 
+    private void ResetPosition(Vector3 offset) {
+        // Subtract the offset to bring the ship back to (0,0,0)
+        myTransform.position -= offset;
+
+        // Crucial: Update the physics velocity/position immediately so there's no "phantom force"
+        rb.position -= (Vector2)offset;
+    }
     private void FixedUpdate() {
         HandleMovement();
     }
@@ -28,6 +39,14 @@ public class ShipController : MonoBehaviour {
 
         // Broadcast movement to the Camera/World Spawner via EventHub
         EventHub.ShipMoved.Invoke(movementData);
+    }
+    private void LateUpdate() {
+        // magnitude is slightly expensive (sqrt), but at 1000 units it's fine. 
+        // For extreme performance use sqrMagnitude > (threshold * threshold)
+        if (myTransform.position.magnitude > threshold) {
+            Vector3 offset = myTransform.position;
+            EventHub.OriginResetRequested.Invoke(offset);
+        }
     }
 
     private void HandleMovement() {

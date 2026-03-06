@@ -346,6 +346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SmoothCameraFollow
   smoothSpeed: 0.1
   leadFactor: 0.5
+  offset: {x: 0, y: 0, z: -10}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,6 +998,7 @@ GameObject:
   - component: {fileID: 1925342706}
   - component: {fileID: 1925342708}
   - component: {fileID: 1925342707}
+  - component: {fileID: 1925342710}
   m_Layer: 0
   m_Name: MANAGERS
   m_TagString: Untagged
@@ -1045,8 +1047,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldSpawner
   chunkPool: {fileID: 1925342707}
+  asteroidPool: {fileID: 1925342710}
   chunkSize: 50
   viewDistance: 2
+  asteroidsPerChunk: 5
 --- !u!4 &1925342709
 Transform:
   m_ObjectHideFlags: 0
@@ -1062,6 +1066,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1925342710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925342705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e975b1ee971a74083c4794d68f851e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectPooler
+  prefab: {fileID: 978942603663140963, guid: 3624deaeb78aa5940bdabd0caf100ee6, type: 3}
+  poolSize: 300
 --- !u!1001 &6513361762808934182
 PrefabInstance:
   m_ObjectHideFlags: 0
