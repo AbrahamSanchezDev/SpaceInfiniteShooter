@@ -13,6 +13,10 @@ public class WorldSpawner : MonoBehaviour {
     private List<Vector2Int> _removalBuffer = new List<Vector2Int>(); // Reusable list
     private Vector2Int _lastChunkCoord = new Vector2Int(-99, -99);
 
+    [Header("Enemy Spawning")]
+    [SerializeField] private ObjectPooler enemyPool;
+    [SerializeField][Range(0, 1)] private float enemySpawnChance = 0.3f;
+    [SerializeField] private int maxEnemiesPerChunk = 2;
 
     private void OnEnable() {
         EventHub.ShipMoved.AddListener(OnPlayerMoved);
@@ -105,14 +109,34 @@ public class WorldSpawner : MonoBehaviour {
         chunk.SetActive(true);
         _activeChunks.Add(coord, chunk);
 
-        // Populate chunk with fresh asteroids from the pool
+        // 1. Spawn Asteroids (Existing logic)
+        PopulateResources(chunk.transform);
+
+        // 2. Spawn Enemies based on chance
+        if (Random.value < enemySpawnChance) {
+            PopulateEnemies(chunk.transform);
+        }
+    }
+
+    private void PopulateResources(Transform parent) {
         for (int i = 0; i < asteroidsPerChunk; i++) {
             GameObject asteroid = asteroidPool.GetObject();
             if (asteroid != null) {
-                asteroid.transform.SetParent(chunk.transform);
-                // Random position inside the 50x50 chunk
+                asteroid.transform.SetParent(parent);
                 asteroid.transform.localPosition = new Vector3(Random.Range(-20, 20), Random.Range(-20, 20), 0);
                 asteroid.SetActive(true);
+            }
+        }
+    }
+    private void PopulateEnemies(Transform parent) {
+        int count = Random.Range(1, maxEnemiesPerChunk + 1);
+        for (int i = 0; i < count; i++) {
+            GameObject enemy = enemyPool.GetObject();
+            if (enemy != null) {
+                enemy.transform.SetParent(parent);
+                // Spawn enemies further apart from resources
+                enemy.transform.localPosition = new Vector3(Random.Range(-22, 22), Random.Range(-22, 22), 0);
+                enemy.SetActive(true);
             }
         }
     }

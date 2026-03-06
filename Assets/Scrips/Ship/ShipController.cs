@@ -15,6 +15,8 @@ public class ShipController : MonoBehaviour {
 
     [SerializeField] private float threshold = 1000f;
 
+    [SerializeField] private WeaponController weapon;
+
     private void Awake() {
         myTransform = transform;
         rb = GetComponent<Rigidbody2D>();
@@ -39,6 +41,11 @@ public class ShipController : MonoBehaviour {
 
         // Broadcast movement to the Camera/World Spawner via EventHub
         EventHub.ShipMoved.Invoke(movementData);
+
+        // The InputReader is already updated to read the "Fire" action
+        if (input.IsFiring) {
+            weapon.RequestFire();
+        }
     }
     private void LateUpdate() {
         // magnitude is slightly expensive (sqrt), but at 1000 units it's fine. 

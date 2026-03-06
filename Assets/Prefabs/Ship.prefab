@@ -91,6 +91,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &2956943843340505594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3642990444349963572}
+  m_Layer: 7
+  m_Name: Fire Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3642990444349963572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2956943843340505594}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.483, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6314525929203730861}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8385515319365416524
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,6 +136,8 @@ GameObject:
   - component: {fileID: 960648658929949944}
   - component: {fileID: 1910062688242085587}
   - component: {fileID: 3881469435207904253}
+  - component: {fileID: 6216803330506712476}
+  - component: {fileID: 4082575873071401751}
   m_Layer: 7
   m_Name: Ship
   m_TagString: Untagged
@@ -126,6 +159,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8813078056281266689}
+  - {fileID: 3642990444349963572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8741816541997731812
@@ -217,6 +251,8 @@ MonoBehaviour:
   thrustForce: 10
   rotationSpeed: 180
   maxVelocity: 15
+  threshold: 1000
+  weapon: {fileID: 4082575873071401751}
 --- !u!114 &1910062688242085587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,3 +283,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0968d13cd240714aa427174ca293781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventoryController
+--- !u!114 &6216803330506712476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8385515319365416524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21d07290434d4c049a2cbf6499a19587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ThreatRadar
+  detectionRadius: 1
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  detectionThreshold: 1
+--- !u!114 &4082575873071401751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8385515319365416524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8010093ef82f1540b0e4c437a612da8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponController
+  firePoint: {fileID: 3642990444349963572}
+  fireRate: 0.5
+  bulletSpeed: 20
+  targetLayerName: Enemy
