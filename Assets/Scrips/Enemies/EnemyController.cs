@@ -23,20 +23,31 @@ public class EnemyController : MonoBehaviour {
     private int _targetBurstCount;
     private bool _playerInRange;
 
+    [Header("Death Settings")]
+    [SerializeField] private int Health = 40;
+    [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private int scrapDropAmount = 25;
+    [SerializeField] private string resourceType = "Scrap";
+
     private void Awake() {
         _myTransform = transform;
         _rb = GetComponent<Rigidbody2D>();
     }
 
     private void OnEnable() {
-        _model = new EnemyModel(50f, strafeSpeed, 100);
+        _model = new EnemyModel(Health, strafeSpeed, 100);
+        _model.OnDeath += HandleDeath;
+
         _currentState = AIState.Idle;
         _targetBurstCount = Random.Range(3, 6); // 3 to 5 shots
         _shotsFiredInBurst = 0;
         EventHub.ShipMoved.AddListener(OnPlayerMoved);
     }
 
-    private void OnDisable() => EventHub.ShipMoved.RemoveListener(OnPlayerMoved);
+    private void OnDisable() {
+        EventHub.ShipMoved.RemoveListener(OnPlayerMoved);
+        _model.OnDeath -= HandleDeath;
+    }
 
     private void OnPlayerMoved(MovementData data) {
         _lastKnownPlayerPos = data.Position;
@@ -142,4 +153,22 @@ public class EnemyController : MonoBehaviour {
             EventHub.StrikeModeStarted.Invoke();
         }
     }
+
+
+
+    #region Battle
+
+    public void TakeDamage(float amount, Vector3 hitPoint) {
+        _model.TakeDamage(amount);
+        // Visual feedback
+        VFXManager.Instance.SpawnHitSpark(hitPoint); 
+    }
+
+    private void HandleDeath() {
+        VFXManager.Instance.SpawnExplosion(transform.position);
+        EventHub.ResourceHarvested.Invoke(resourceType, scrapDropAmount);
+        gameObject.SetActive(false);
+    }
+
+    #endregion
 }

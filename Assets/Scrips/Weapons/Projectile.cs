@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 public class Projectile : MonoBehaviour {
-    [SerializeField] private float damage = 10f;
+    [SerializeField] private int damage = 10;
     [SerializeField] private float lifetime = 2f;
     private int _targetLayer;
 
@@ -14,11 +14,12 @@ public class Projectile : MonoBehaviour {
         if (collision.gameObject.layer == _targetLayer) {
 
             if (collision.TryGetComponent(out EnemyController enemy)) {
-                // Apply damage logic here
-                enemy.gameObject.SetActive(false);
+                enemy.TakeDamage(damage, collision.transform.position);
             }
             // Do damage logic
-
+            else if (collision.TryGetComponent(out ShipController player)) {
+                GlobalGameData.Instance.Scrap -= damage;
+            }
             Deactivate();
         }
     }

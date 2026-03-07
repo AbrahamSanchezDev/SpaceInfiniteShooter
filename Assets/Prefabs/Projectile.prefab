@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd51a8c468b2714597c62db16ee9087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  damage: 10
+  damage: 20
   lifetime: 2
 --- !u!1 &8256593608844848828
 GameObject:

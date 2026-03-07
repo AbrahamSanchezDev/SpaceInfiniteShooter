@@ -22,15 +22,33 @@ public class GlobalGameData : MonoBehaviour {
     // Properties with backing fields to trigger events
     public int Lives {
         get => _lives;
-        set { _lives = value; OnLivesChanged?.Invoke(_lives); }
+        set {
+            _lives = value;
+            if (_lives < 0) {
+                _lives = 0;
+            }
+            OnLivesChanged?.Invoke(_lives);
+        }
     }
     public int Scrap {
         get => _scrap;
-        set { _scrap = value; OnScrapChanged?.Invoke(_scrap); }
+        set {
+            _scrap = value;
+            if (_scrap < 0) {
+                _scrap = 0;
+            }
+            OnScrapChanged?.Invoke(_scrap);
+        }
     }
     public float Plasma {
         get => _plasma;
-        set { _plasma = value; OnPlasmaChanged?.Invoke(_plasma); }
+        set {
+            _plasma = value;
+            if (_plasma < 0) {
+                _plasma = 0;
+            }
+            OnPlasmaChanged?.Invoke(_plasma);
+        }
     }
 
     private void Awake() {

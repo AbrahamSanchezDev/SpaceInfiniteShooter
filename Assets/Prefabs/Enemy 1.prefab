@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7602068625778135471}
   m_Layer: 8
   m_Name: Enemy 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,6 +119,10 @@ MonoBehaviour:
   chargeSpeed: 12
   attackCooldown: 2
   weapon: {fileID: 7602068625778135471}
+  Health: 40
+  explosionPrefab: {fileID: 7849483227662384325, guid: 2cab3fd736a65a147a8738f4b06585fb, type: 3}
+  scrapDropAmount: 25
+  resourceType: Scrap
 --- !u!114 &7602068625778135471
 MonoBehaviour:
   m_ObjectHideFlags: 0
