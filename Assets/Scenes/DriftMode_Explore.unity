@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SmoothCameraFollow
   smoothSpeed: 0.1
-  leadFactor: 0.5
+  leadFactor: 0.4
   offset: {x: 0, y: 0, z: -10}
   driftZoom: 10
   strikeZoom: 7
@@ -1402,7 +1402,7 @@ MonoBehaviour:
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   siphonAction: {fileID: -3399767259555883760, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   fireAction: {fileID: 6130902373624551667, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  IsFiring: 0
+  boostAction: {fileID: -2099379676528639254, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!114 &1925342707
 MonoBehaviour:
   m_ObjectHideFlags: 0

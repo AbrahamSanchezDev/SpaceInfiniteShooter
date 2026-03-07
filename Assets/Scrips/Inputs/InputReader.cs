@@ -6,8 +6,10 @@ public class InputReader : MonoBehaviour {
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference siphonAction;
     [SerializeField] private InputActionReference fireAction;
-
-    public bool IsFiring;
+    [SerializeField] private InputActionReference boostAction;
+    
+    public bool IsFiring { get; private set; }
+    public bool IsBoosting { get; private set; }
     public Vector2 MoveValue { get; private set; }
     public bool IsSiphoning { get; private set; }
 
@@ -15,12 +17,14 @@ public class InputReader : MonoBehaviour {
         moveAction.action.Enable();
         siphonAction.action.Enable();
         fireAction.action.Enable();
+        boostAction.action.Enable();
     }
 
     private void OnDisable() {
         moveAction.action.Disable();
         siphonAction.action.Disable();
         fireAction.action.Disable();
+        boostAction.action.Disable();
     }
 
     private void Update() {
@@ -28,5 +32,6 @@ public class InputReader : MonoBehaviour {
         // Check if button is held
         IsSiphoning = siphonAction.action.IsPressed();
         IsFiring = fireAction.action.IsPressed();
+        IsBoosting = boostAction.action.IsPressed();
     }
 }

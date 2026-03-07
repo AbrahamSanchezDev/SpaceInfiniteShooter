@@ -55,6 +55,10 @@ public class GlobalGameData : MonoBehaviour {
         SetInstance();
     }
 
+    private void Update() {
+        // Slowly recover 1% per second if drifting
+        RecoverPlasma(1f * Time.deltaTime);
+    }
 
     public static GlobalGameData FindInstance() {
         return FindFirstObjectByType<GlobalGameData>();
@@ -85,5 +89,14 @@ public class GlobalGameData : MonoBehaviour {
             Debug.Log($"<color=green>Rewards Claimed: {PendingScrapReward} Scrap added!</color>");
             PendingScrapReward = 0; // Clear the mailbox
         }
+    }
+
+
+    public void UsePlasma(float amount) {
+        Plasma = Mathf.Max(0, Plasma - amount);
+    }
+
+    public void RecoverPlasma(float amount) {
+        Plasma = Mathf.Min(100f, Plasma + amount);
     }
 }

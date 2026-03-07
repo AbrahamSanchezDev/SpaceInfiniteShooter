@@ -17,6 +17,14 @@ public class ShipController : MonoBehaviour {
 
     [SerializeField] private WeaponController weapon;
 
+
+    [Header("Boost Settings")]
+    [SerializeField] private float boostMultiplier = 2f;
+    [SerializeField] private float plasmaConsumptionRate = 15f;
+    [SerializeField]
+    private bool _isBoosting;
+    [SerializeField]
+    private bool _hasPlasma;
     private void Awake() {
         myTransform = transform;
         rb = GetComponent<Rigidbody2D>();
@@ -39,6 +47,14 @@ public class ShipController : MonoBehaviour {
         movementData.Position = myTransform.position;
         movementData.Velocity = rb.linearVelocity;
 
+        // Check if player is holding the boost button and has plasma
+        _isBoosting = input.IsBoosting;
+        _hasPlasma = GlobalGameData.Instance.Plasma > 1;
+
+        if (_isBoosting) {
+            GlobalGameData.Instance.UsePlasma(plasmaConsumptionRate * Time.deltaTime);
+        }
+
         // Broadcast movement to the Camera/World Spawner via EventHub
         EventHub.ShipMoved.Invoke(movementData);
 
@@ -57,18 +73,26 @@ public class ShipController : MonoBehaviour {
     }
 
     private void HandleMovement() {
+        float currentThrust = thrustForce;
+        float currentMaxVel = maxVelocity;
+
+        if (_isBoosting && _hasPlasma) {
+            currentThrust *= boostMultiplier;
+            currentMaxVel *= boostMultiplier;
+        }
+
         // Rotation (using X input)
         float rotation = -input.MoveValue.x * rotationSpeed * Time.fixedDeltaTime;
         rb.MoveRotation(rb.rotation + rotation);
 
         // Thrust (using Y input)
         if (input.MoveValue.y > 0) {
-            rb.AddForce(myTransform.up * input.MoveValue.y * thrustForce);
+            rb.AddForce(myTransform.up * input.MoveValue.y * currentThrust);
         }
 
-        // Cap Velocity
-        if (rb.linearVelocity.magnitude > maxVelocity) {
-            rb.linearVelocity = rb.linearVelocity.normalized * maxVelocity;
+        // Cap Velocity using currentMaxVel
+        if (rb.linearVelocity.magnitude > currentMaxVel) {
+            rb.linearVelocity = rb.linearVelocity.normalized * currentMaxVel;
         }
     }
 }

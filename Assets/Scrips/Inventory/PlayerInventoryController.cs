@@ -33,7 +33,7 @@ public class PlayerInventoryController : MonoBehaviour {
         }
         if (type == "Plasma") {
             if (GlobalGameData.Instance)
-                GlobalGameData.Instance.Plasma += amount;
+                GlobalGameData.Instance.RecoverPlasma(amount);
         }
         if (type == "Lives") {
             if (GlobalGameData.Instance)
