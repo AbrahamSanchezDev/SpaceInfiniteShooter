@@ -92,7 +92,7 @@ public class EnemyController : MonoBehaviour {
         _rb.linearVelocity = Vector2.Lerp(_rb.linearVelocity, Vector2.zero, 0.2f);
 
         // Fire Projectile
-        Debug.Log($"<color=orange>Enemy Fire ({_shotsFiredInBurst + 1}/{_targetBurstCount})</color>");
+        //Debug.Log($"<color=orange>Enemy Fire ({_shotsFiredInBurst + 1}/{_targetBurstCount})</color>");
         _shotsFiredInBurst++;
         _nextActionTime = Time.time + attackCooldown;
 
