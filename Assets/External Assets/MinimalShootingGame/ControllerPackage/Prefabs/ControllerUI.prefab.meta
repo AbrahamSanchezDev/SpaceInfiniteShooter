@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2bdd61cb21051a8449686038341914ee
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176413
+  packageName: Minimal Space Shooter Start Kit
+  packageVersion: 1.0
+  assetPath: Assets/MinimalShootingGame/ControllerPackage/Prefabs/ControllerUI.prefab
+  uploadId: 383624

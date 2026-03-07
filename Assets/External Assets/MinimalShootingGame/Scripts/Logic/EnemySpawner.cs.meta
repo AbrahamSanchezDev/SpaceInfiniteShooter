@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c33746ea5d201d74bb0cc9cc0e5cd899
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176413
+  packageName: Minimal Space Shooter Start Kit
+  packageVersion: 1.0
+  assetPath: Assets/MinimalShootingGame/Scripts/Logic/EnemySpawner.cs
+  uploadId: 383624

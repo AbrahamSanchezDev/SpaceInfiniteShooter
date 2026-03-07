@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 31dce7d79db19264f880bd38a6fddb4d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176413
+  packageName: Minimal Space Shooter Start Kit
+  packageVersion: 1.0
+  assetPath: Assets/MinimalShootingGame/Prefabs/Effect/effect_damage.prefab
+  uploadId: 383624

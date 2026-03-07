@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b20be59f93ec98c4e9dd34fc5d6924ee
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176413
+  packageName: Minimal Space Shooter Start Kit
+  packageVersion: 1.0
+  assetPath: Assets/MinimalShootingGame/ControllerPackage/Scripts/Setting/GameControllerSetting.cs
+  uploadId: 383624

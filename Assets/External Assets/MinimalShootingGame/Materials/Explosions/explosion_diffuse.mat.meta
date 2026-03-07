@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6aee1bf6398d2784f9ddfcb19c488b79
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176413
+  packageName: Minimal Space Shooter Start Kit
+  packageVersion: 1.0
+  assetPath: Assets/MinimalShootingGame/Materials/Explosions/explosion_diffuse.mat
+  uploadId: 383624

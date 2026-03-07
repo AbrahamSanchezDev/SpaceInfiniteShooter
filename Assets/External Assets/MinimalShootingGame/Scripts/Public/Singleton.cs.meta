@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b416271ad965a524f9ec7c59aec1ce75
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176413
+  packageName: Minimal Space Shooter Start Kit
+  packageVersion: 1.0
+  assetPath: Assets/MinimalShootingGame/Scripts/Public/Singleton.cs
+  uploadId: 383624

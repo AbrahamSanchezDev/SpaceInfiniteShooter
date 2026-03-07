@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bb5c709eb6e45304483bf4c16bd6dafe
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176413
+  packageName: Minimal Space Shooter Start Kit
+  packageVersion: 1.0
+  assetPath: Assets/MinimalShootingGame/Prefabs/Entity/Enemy/EnemyBullet.prefab
+  uploadId: 383624

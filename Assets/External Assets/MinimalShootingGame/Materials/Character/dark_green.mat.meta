@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cef0d11ce88f9cf4284a0598d8484b4e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176413
+  packageName: Minimal Space Shooter Start Kit
+  packageVersion: 1.0
+  assetPath: Assets/MinimalShootingGame/Materials/Character/dark_green.mat
+  uploadId: 383624

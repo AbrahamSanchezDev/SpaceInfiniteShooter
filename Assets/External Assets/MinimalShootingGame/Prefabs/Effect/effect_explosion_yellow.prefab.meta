@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a0acff8ad0e9a4046b3fb52dbd2b03bf
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176413
+  packageName: Minimal Space Shooter Start Kit
+  packageVersion: 1.0
+  assetPath: Assets/MinimalShootingGame/Prefabs/Effect/effect_explosion_yellow.prefab
+  uploadId: 383624

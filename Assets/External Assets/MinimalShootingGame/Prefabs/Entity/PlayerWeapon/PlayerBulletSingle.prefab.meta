@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2d461a501962b5d4b9d214428ce5d8e6
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176413
+  packageName: Minimal Space Shooter Start Kit
+  packageVersion: 1.0
+  assetPath: Assets/MinimalShootingGame/Prefabs/Entity/PlayerWeapon/PlayerBulletSingle.prefab
+  uploadId: 383624

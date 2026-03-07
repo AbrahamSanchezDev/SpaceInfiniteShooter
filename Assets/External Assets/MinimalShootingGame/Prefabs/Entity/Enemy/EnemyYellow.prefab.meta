@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c2051dbe353d65948bd45a85e0a4b6f5
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176413
+  packageName: Minimal Space Shooter Start Kit
+  packageVersion: 1.0
+  assetPath: Assets/MinimalShootingGame/Prefabs/Entity/Enemy/EnemyYellow.prefab
+  uploadId: 383624

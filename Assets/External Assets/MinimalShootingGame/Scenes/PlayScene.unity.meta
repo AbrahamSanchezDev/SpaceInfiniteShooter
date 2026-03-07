@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3e73cfd53ad52e94b8f0ba902e02cf46
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176413
+  packageName: Minimal Space Shooter Start Kit
+  packageVersion: 1.0
+  assetPath: Assets/MinimalShootingGame/Scenes/PlayScene.unity
+  uploadId: 383624

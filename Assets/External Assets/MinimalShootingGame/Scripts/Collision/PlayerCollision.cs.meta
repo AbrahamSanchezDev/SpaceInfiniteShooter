@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: a26f83c638bec9c44b7fe2d2dd341337
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176413
+  packageName: Minimal Space Shooter Start Kit
+  packageVersion: 1.0
+  assetPath: Assets/MinimalShootingGame/Scripts/Collision/PlayerCollision.cs
+  uploadId: 383624

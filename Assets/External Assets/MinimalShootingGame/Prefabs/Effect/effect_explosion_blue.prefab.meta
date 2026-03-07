@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 83a7b76daf86dc94d89802fd87426465
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176413
+  packageName: Minimal Space Shooter Start Kit
+  packageVersion: 1.0
+  assetPath: Assets/MinimalShootingGame/Prefabs/Effect/effect_explosion_blue.prefab
+  uploadId: 383624
