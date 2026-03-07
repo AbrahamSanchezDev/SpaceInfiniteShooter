@@ -11,9 +11,22 @@ public class SiphonController : MonoBehaviour {
     [Header("Visuals")]
     [SerializeField] private LineRenderer beamLine;
 
+    [SerializeField] private AudioClip OnSiphoneAudio;
+    private AudioSource audioSource;
+
     private void Awake() {
         myTransform = transform;
         if (beamLine != null) beamLine.enabled = false;
+
+        if (OnSiphoneAudio) {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null) {
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
+            audioSource.playOnAwake = false;
+            audioSource.clip = OnSiphoneAudio;
+            audioSource.loop = true;
+        }
     }
 
     private void Update() {
@@ -22,7 +35,16 @@ public class SiphonController : MonoBehaviour {
         }
         else if (beamLine != null && beamLine.enabled) {
             beamLine.enabled = false;
+            StopAudio();
         }
+    }
+    private void PlayAudio() {
+        if (audioSource && audioSource.isPlaying == false) {
+            audioSource.Play();
+        }
+    }
+    private void StopAudio() {
+        audioSource?.Stop();
     }
 
     private void ExecuteSiphon() {
@@ -37,9 +59,11 @@ public class SiphonController : MonoBehaviour {
                 beamLine.SetPosition(0, myTransform.position);
                 beamLine.SetPosition(1, hit.point);
             }
+            PlayAudio();
         }
         else if (beamLine != null) {
             beamLine.enabled = false;
+            StopAudio();
         }
     }
 }

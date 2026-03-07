@@ -139,6 +139,7 @@ MonoBehaviour:
   fireRate: 0.5
   bulletSpeed: 20
   targetLayerName: Player
+  projectileDamage: 20
 --- !u!1 &7005514976143785287
 GameObject:
   m_ObjectHideFlags: 0

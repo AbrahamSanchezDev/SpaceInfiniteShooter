@@ -632,6 +632,10 @@ MonoBehaviour:
   maxVelocity: 15
   threshold: 1000
   weapon: {fileID: 4082575873071401751}
+  boostMultiplier: 2
+  plasmaConsumptionRate: 15
+  _isBoosting: 0
+  _hasPlasma: 0
 --- !u!114 &1910062688242085587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,6 +700,7 @@ MonoBehaviour:
   fireRate: 0.5
   bulletSpeed: 20
   targetLayerName: Enemy
+  projectileDamage: 20
 --- !u!114 &1006051316059318147
 MonoBehaviour:
   m_ObjectHideFlags: 0

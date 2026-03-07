@@ -19,6 +19,7 @@ public class GlobalGameData : MonoBehaviour {
     [Header("Rewards")]
     public int PendingScrapReward = 0;
 
+    private int maxLives = 3;
     // Properties with backing fields to trigger events
     public int Lives {
         get => _lives;
@@ -73,11 +74,12 @@ public class GlobalGameData : MonoBehaviour {
 
     public void LoseResourcesOnDefeat() {
         Scrap = Mathf.FloorToInt(Scrap * 0.5f);
-        Lives = 3;
+        Lives = maxLives;
     }
 
     public void PrepareCombat(int enemyCount) {
         EnemiesToSpawn = enemyCount;
+        Lives = maxLives;
     }
 
     public void SetCombatReward(int amount) {

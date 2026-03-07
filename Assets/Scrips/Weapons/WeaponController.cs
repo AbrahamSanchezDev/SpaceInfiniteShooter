@@ -7,6 +7,8 @@ public class WeaponController : MonoBehaviour {
     [SerializeField] private float bulletSpeed = 20f;
     [SerializeField] private string targetLayerName; // "Enemy" for player, "Player" for enemy
 
+    [SerializeField] private int projectileDamage = 20;
+
     private float _nextFireTime;
     private Transform _myTransform;
 
@@ -33,6 +35,7 @@ public class WeaponController : MonoBehaviour {
             // Set the bullet's target layer so it doesn't hit the shooter
             if (bullet.TryGetComponent(out Projectile p)) {
                 p.SetTargetLayer(LayerMask.NameToLayer(targetLayerName));
+                p.SetDamage(projectileDamage);
             }
         }
     }

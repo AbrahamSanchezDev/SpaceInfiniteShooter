@@ -11,7 +11,15 @@ public class RadarIndicator : MonoBehaviour {
 
     [SerializeField] private GameObject resourcesArrow;
     [SerializeField] private GameObject enemiesArrow;
+    private ContactFilter2D maskFilter;
+    private float detectRadius = 50f;
 
+    private void Awake() {
+        maskFilter = new ContactFilter2D {
+            layerMask = targetLayer,
+            useLayerMask = true
+        };
+    }
     private void Start() {
         // Simple way to find player in Drift mode
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
@@ -20,8 +28,10 @@ public class RadarIndicator : MonoBehaviour {
     private void Update() {
         if (_playerTransform == null) return;
 
-        // Find targets in a large radius
-        int count = Physics2D.OverlapCircleNonAlloc(_playerTransform.position, 50f, _results, targetLayer);
+        // Find targets in a large radius  
+
+        int count = Physics2D.OverlapCircle(_playerTransform.position, detectRadius, maskFilter, _results);
+
 
         if (count > 0) {
             arrowIcon.gameObject.SetActive(true);

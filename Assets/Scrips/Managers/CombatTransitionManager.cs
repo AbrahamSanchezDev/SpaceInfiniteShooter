@@ -3,8 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class CombatTransitionManager : MonoBehaviour {
     [SerializeField] private string combatSceneName = "StrikeMode_Arena";
-    [SerializeField] private int mintEnemyCount = 20;
-    [SerializeField] private int maxEnemyCount = 30;
+    [SerializeField] private int mintEnemyCount = 1;
+    [SerializeField] private int maxEnemyCount = 3;
 
     private void OnEnable() => EventHub.StrikeModeStarted.AddListener(InitiateCombat);
     private void OnDisable() => EventHub.StrikeModeStarted.RemoveListener(InitiateCombat);

@@ -1,15 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace MinimalShooting
-{
+namespace MinimalShooting {
     /// <summary>
     /// EnemySpawner
     /// This class spawns multiple enemies.
     /// </summary>
-    public class EnemySpawner : MonoBehaviour
-    {
+    public class EnemySpawner : MonoBehaviour {
         [Header("Enemy prefab array")]
         [SerializeField]
         Enemy[] prefabEnemies;
@@ -39,9 +38,21 @@ namespace MinimalShooting
         [SerializeField]
         Vector3 spawnArea = Vector3.one;
 
+        [SerializeField]
+        private int maxEnemies = 0;
 
-        private void OnEnable()
-        {
+        [SerializeField]
+        private int currentEnemies;
+        [SerializeField]
+        private bool keepSpawning;
+
+        public UnityEvent OnFinishedWaves = new UnityEvent();
+
+        public void SetMaxEnemies(int maxEnemiesToSpawn) {
+            maxEnemies = maxEnemiesToSpawn;
+        }
+
+        private void OnEnable() {
             StartCoroutine(SpawnLoop());
         }
 
@@ -50,31 +61,39 @@ namespace MinimalShooting
         /// Spawns enemies infinite.
         /// </summary>
         /// <returns></returns>
-        IEnumerator SpawnLoop()
-        {
+        IEnumerator SpawnLoop() {
+            Enemy.TOTALENEMIES = 0;
             // Wait for seconds before start.
-            if (this.startDelay > 0.0f)
-            {
+            if (this.startDelay > 0.0f) {
                 yield return new WaitForSeconds(this.startDelay);
             }
-
-            while (true)
-            {
+            keepSpawning = true;
+            while (keepSpawning) {
                 RunWave();
 
                 // Wait for the next wave.
                 float interval = Random.Range(this.intervalMin, this.intervalMax);
+                currentEnemies++;
+                if (maxEnemies > 0 && currentEnemies > maxEnemies) {
+                    keepSpawning = false;
+                    StartCoroutine(nameof(CheckForEnemiesCo));
+                }
                 yield return new WaitForSeconds(interval);
             }
         }
 
+        private IEnumerator CheckForEnemiesCo() {
 
-        void RunWave()
-        {
+            while (Enemy.TOTALENEMIES > 0) {
+                yield return new WaitForSeconds(0.5f);
+            }
+            OnFinishedWaves?.Invoke();
+        }
+
+        void RunWave() {
             // It determines how many enemies to be spawned on this wave.
             int count = Random.Range(this.countMin, this.countMax + 1);
-            for (int i = 0; i < count; ++i)
-            {
+            for (int i = 0; i < count; ++i) {
                 // Pick one enemy prefab randomly.
                 int enemyIndex = Random.Range(0, this.prefabEnemies.Length);
 
@@ -92,8 +111,7 @@ namespace MinimalShooting
         /// Get the random spawn position inside of the spawn area.
         /// </summary>
         /// <returns></returns>
-        Vector3 GetRandomPosition()
-        {
+        Vector3 GetRandomPosition() {
             float x = Random.Range(-this.spawnArea.x, this.spawnArea.x);
             float y = Random.Range(-this.spawnArea.y, this.spawnArea.y);
             float z = Random.Range(-this.spawnArea.z, this.spawnArea.z);
@@ -105,8 +123,7 @@ namespace MinimalShooting
         /// <summary>
         /// Draw the rectanble of this spawn area for debug.
         /// </summary>
-        private void OnDrawGizmos()
-        {
+        private void OnDrawGizmos() {
             Vector3 leftTop = transform.position + new Vector3(-this.spawnArea.x, this.spawnArea.y, this.spawnArea.z);
             Vector3 rightTop = transform.position + new Vector3(this.spawnArea.x, this.spawnArea.y, this.spawnArea.z);
             Vector3 leftBottom = transform.position + new Vector3(-this.spawnArea.x, this.spawnArea.y, -this.spawnArea.z);

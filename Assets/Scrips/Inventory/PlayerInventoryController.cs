@@ -25,7 +25,6 @@ public class PlayerInventoryController : MonoBehaviour {
 
     private void HandleResourceHarvested(string type, int amount) {
         _model.AddResource(type, amount);
-        Debug.Log($"Inventory Update: {type} = {_model.GetAmount(type)}");
 
         if (type == "Scrap") {
             if (GlobalGameData.Instance)

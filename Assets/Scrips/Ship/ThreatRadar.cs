@@ -14,7 +14,15 @@ public class ThreatRadar : MonoBehaviour {
     // Buffer for overlap results to avoid allocation
     private Collider2D[] _results = new Collider2D[5];
 
-    private void Awake() => _myTransform = transform;
+    private ContactFilter2D maskFilter;
+
+    private void Awake() {
+        maskFilter = new ContactFilter2D {
+            layerMask = enemyLayer,
+            useLayerMask = true
+        };
+        _myTransform = transform;
+    }
 
     private void Update() {
         CheckForThreats();
@@ -22,7 +30,7 @@ public class ThreatRadar : MonoBehaviour {
 
     private void CheckForThreats() {
         // Non-allocating overlap check
-        int count = Physics2D.OverlapCircleNonAlloc(_myTransform.position, detectionRadius, _results, enemyLayer);
+        int count = Physics2D.OverlapCircle(_myTransform.position, detectionRadius, maskFilter, _results);
 
         if (count > 0 && !_isInCombat) {
             _detectionTimer += Time.deltaTime;

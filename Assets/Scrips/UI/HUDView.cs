@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using TMPro; // Add "using TMPro;" at the top
+using TMPro;
+using System;
 
 public class HUDView : MonoBehaviour {
     [Header("UI Elements")]
@@ -7,6 +8,19 @@ public class HUDView : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI scrapText;
     [SerializeField] private TextMeshProUGUI plasmaText;
 
+    [SerializeField] private AudioClip OnScrapAdded;
+    private AudioSource audioSource;
+    private void Awake() {
+        if (OnScrapAdded) {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null) {
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
+            audioSource.playOnAwake = false;
+            audioSource.clip = OnScrapAdded;
+            audioSource.loop = false;
+        }
+    }
     private void OnEnable() {
         // Subscribe to Model events
         var globalData = GlobalGameData.Instance;
@@ -40,6 +54,15 @@ public class HUDView : MonoBehaviour {
         if (livesText)
             livesText.text = $"LIVES: {val}";
     }
-    private void UpdateScrapUI(int val) => scrapText.text = $"SCRAP: {val}";
-    private void UpdatePlasmaUI(float val) => plasmaText.text = $"PLASMA: {val:F0}%";
+
+    private void UpdateScrapUI(int val) {
+        scrapText.text = $"SCRAP: {val}";
+        if (audioSource) {
+            audioSource.Play();
+        }
+    }
+
+    private void UpdatePlasmaUI(float val) {
+        plasmaText.text = $"PLASMA: {val:F0}%";
+    }
 }

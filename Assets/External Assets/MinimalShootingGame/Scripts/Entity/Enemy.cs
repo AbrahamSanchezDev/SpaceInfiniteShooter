@@ -10,6 +10,8 @@ namespace MinimalShooting
     /// </summary>
     public class Enemy : MonoBehaviour
     {
+
+        public static int TOTALENEMIES;
         enum MovementType
         {
             Straight,
@@ -122,6 +124,8 @@ namespace MinimalShooting
                     this.direction = (this.player.transform.position - transform.position).normalized;
                 }
             }
+
+            TOTALENEMIES++;
         }
 
 
@@ -175,6 +179,8 @@ namespace MinimalShooting
 
             // Destroy this enemey.
             Destroy(gameObject);
+
+            TOTALENEMIES--;
         }
 
 
@@ -296,6 +302,7 @@ namespace MinimalShooting
                 transform.position.x <= -7.0f)
             {
                 Destroy(gameObject);
+                TOTALENEMIES--;
             }
         }
     }
