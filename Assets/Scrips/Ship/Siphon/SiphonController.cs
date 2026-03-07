@@ -8,29 +8,38 @@ public class SiphonController : MonoBehaviour {
 
     private Transform myTransform;
 
+    [Header("Visuals")]
+    [SerializeField] private LineRenderer beamLine;
+
     private void Awake() {
         myTransform = transform;
+        if (beamLine != null) beamLine.enabled = false;
     }
 
     private void Update() {
         if (input.IsSiphoning) {
             ExecuteSiphon();
         }
+        else if (beamLine != null && beamLine.enabled) {
+            beamLine.enabled = false;
+        }
     }
 
     private void ExecuteSiphon() {
-        // 1. We provide the LayerMask here
-        // 2. We also ensure the ray starts slightly 'ahead' of the ship or ignore self
         RaycastHit2D hit = Physics2D.Raycast(myTransform.position, myTransform.up, range, resourceLayer);
 
-        if (hit.collider != null) {
-            // Using TryGetComponent is the safest/most performant way to check for the controller
-            if (hit.collider.TryGetComponent(out ResourceController resource)) {
-                resource.Siphon(siphonPower * Time.deltaTime);
+        if (hit.collider != null && hit.collider.TryGetComponent(out ResourceController resource)) {
+            resource.Siphon(siphonPower * Time.deltaTime);
 
-                // Optional: Draw a line in the editor to see it working
-                Debug.DrawLine(myTransform.position, hit.point, Color.cyan);
+            // Update Beam Visuals
+            if (beamLine != null) {
+                beamLine.enabled = true;
+                beamLine.SetPosition(0, myTransform.position);
+                beamLine.SetPosition(1, hit.point);
             }
+        }
+        else if (beamLine != null) {
+            beamLine.enabled = false;
         }
     }
 }
