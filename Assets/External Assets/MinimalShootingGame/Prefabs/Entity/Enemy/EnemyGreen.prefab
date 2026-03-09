@@ -233,7 +233,7 @@ Transform:
   - {fileID: 7943489708212010120}
   m_Father: {fileID: 1441742913209693952}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5923407169208488455
+--- !u!1 &6739181533899025518
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,8 +241,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4199108664511737100}
-  - component: {fileID: 8217037613401859754}
+  - component: {fileID: 4340451632821994375}
+  - component: {fileID: 430470155385554334}
   m_Layer: 0
   m_Name: Visuals
   m_TagString: Untagged
@@ -250,29 +250,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4199108664511737100
+--- !u!4 &4340451632821994375
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5923407169208488455}
+  m_GameObject: {fileID: 6739181533899025518}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.12496, y: 0.12496, z: 0.12496}
+  m_LocalScale: {x: 0.61646515, y: 0.61646515, z: 0.61646515}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6296964608330120899}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
---- !u!212 &8217037613401859754
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
+--- !u!212 &430470155385554334
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5923407169208488455}
+  m_GameObject: {fileID: 6739181533899025518}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -314,7 +314,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 5d6e53ff1f1087042a5d02643b88c9ae, type: 3}
+  m_Sprite: {fileID: 1754142499, guid: 3b9676b780842104c80e8bc463d335a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -359,7 +359,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4199108664511737100}
+  - {fileID: 4340451632821994375}
   m_Father: {fileID: 1441742913209693952}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1153546103375486460
