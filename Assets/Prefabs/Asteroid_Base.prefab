@@ -78,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResourceController
   initialHealth: 100
   resourceYield: 10
+  giveResourcesOverTime: 1
 --- !u!114 &3157433485711435294
 MonoBehaviour:
   m_ObjectHideFlags: 0

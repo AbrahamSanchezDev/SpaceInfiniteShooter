@@ -16,6 +16,14 @@ public class ExitGameHandler : MonoBehaviour {
     private void QuitApplication() {
         Debug.Log("Exiting Application...");
 
+#if UNITY_WEBGL
+        // For WebGL builds, we can't quit the application, so we can redirect to a different page or simply log a message
+        Debug.Log("Cannot quit application in WebGL. Please close the browser tab.");
+        // Reload the page
+        Application.ExternalEval("document.location.reload(true);");
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+#endif
+
         // This works for standalone builds (.exe, .app)
         Application.Quit();
 
