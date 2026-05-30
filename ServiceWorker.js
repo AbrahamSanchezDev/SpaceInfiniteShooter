@@ -1,9 +1,9 @@
 const cacheName = "WorldsDev-SpaceInfiniteShooter-0.1.0";
 const contentToCache = [
     "Build/SpaceInfiniteShooter.loader.js",
-    "Build/SpaceInfiniteShooter.framework.js.br",
-    "Build/SpaceInfiniteShooter.data.br",
-    "Build/SpaceInfiniteShooter.wasm.br",
+    "Build/SpaceInfiniteShooter.framework.js",
+    "Build/SpaceInfiniteShooter.data",
+    "Build/SpaceInfiniteShooter.wasm",
     "TemplateData/style.css"
 
 ];
