@@ -2,6 +2,10 @@
 
 An infinite space exploration and combat prototype built in Unity. This project balances the calm, strategic resource gathering of "Drift Mode" with the high-octane, arena-based "Strike Mode."
 
+## 👀 Previews
+![Preview_1](preview_1.gif)
+![Preview_2](preview_2.gif)
+
 ## 🚀 Current State of Development
 
 The prototype currently features:
