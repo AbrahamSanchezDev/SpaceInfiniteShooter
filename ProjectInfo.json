@@ -1,0 +1,14 @@
+{
+  "id": "space-infinite-shooter",
+  "title": "Space Infinite Shooter",
+  "subtitle": "Infinite space exploration with dual-mode gameplay: strategic drift and combat arenas",
+  "techBadge": "Unity 6",
+  "gifUrl": "/games/space-infinite-shooter.gif",
+  "repoUrl": "https://github.com/arcanite-03/SpaceInfiniteShooter",
+  "demoUrl": "https://abrahamsanchezdev.github.io/SpaceInfiniteShooter/",
+  "challenge": "Seamlessly blend infinite world generation with persistent resource management across two distinct gameplay modes. The challenge involved implementing floating-origin reset for coordinate overflow, efficient chunk pooling to handle dynamic entity loading/unloading, and state persistence through scene transitions while maintaining high performance on diverse hardware.",
+  "architecture": "MVC-based architecture with singleton game data, event-driven communication via EventHub, and object pooling for projectiles and environmental entities. Grid-based chunk spawning (50x50) with floating origin reset enables true infinite world generation; dual gameplay loops (Drift Mode for exploration, Strike Mode for arena combat) use separate managers that share persistent resource state.",
+  "techStack": ["Unity 6.0.3", "C#", "Physics2D", "Object Pooling", "Event System", "MinimalShooting Framework"],
+  "codeSnippetTitle": "Floating Origin Reset & Chunk Management",
+  "codeSnippet": "// Shift world coordinates when origin drifts too far\nprivate void ShiftChunks(Vector3 offset) {\n    _lastChunkCoord = new Vector2Int(\n        Mathf.RoundToInt((_lastChunkCoord.x * chunkSize - offset.x) / chunkSize),\n        Mathf.RoundToInt((_lastChunkCoord.y * chunkSize - offset.y) / chunkSize)\n    );\n    foreach (var chunk in _activeChunks.Values) {\n        chunk.transform.position -= offset;\n    }\n    // Rebuild coordinate dictionary with new keys\n    var tempDict = new Dictionary<Vector2Int, GameObject>();\n    // ... map old coords to new coords based on new positions\n}"
+}
